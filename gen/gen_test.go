@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"zikichombo.org/sound/codec/wav"
+	"zikichombo.org/codec/wav"
 	"zikichombo.org/sound/freq"
 	"zikichombo.org/sound/gen"
 	"zikichombo.org/sound/ops"
