@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/irifrance/snd/encoding/wav"
-	"github.com/irifrance/snd/freq"
-	"github.com/irifrance/snd/gen"
-	"github.com/irifrance/snd/ops"
+	"zikichombo.org/sound/codec/wav"
+	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/gen"
+	"zikichombo.org/sound/ops"
 )
 
 func TestNote(t *testing.T) {

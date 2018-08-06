@@ -6,8 +6,8 @@ package ops
 import (
 	"math"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
 )
 
 type Envelope interface {
@@ -59,30 +59,30 @@ func (e *sinEnv) Amp() float64 {
 
 // ExpEnv returns a source with an exponential envelope
 // fading from start with decay decay.
-func ExpEnv(src snd.Source, start, decay float64) snd.Source {
+func ExpEnv(src sound.Source, start, decay float64) sound.Source {
 	return Env(src, &expEnv{a: decay, v: start})
 }
 
 // LinearEnv returns a source with a linear envelope
 // fading from start at rate rate.
-func LinearEnv(src snd.Source, start, rate float64) snd.Source {
+func LinearEnv(src sound.Source, start, rate float64) sound.Source {
 	return Env(src, &linEnv{v: start, r: rate})
 }
 
 // SinEnv returns a source with a sin enveope at frequence f.
-func SinEnv(src snd.Source, f freq.T) snd.Source {
+func SinEnv(src sound.Source, f freq.T) sound.Source {
 	return Env(src, &sinEnv{v: 0, rps: src.SampleRate().RadsPer(f)})
 }
 
 type eSrc struct {
-	snd.Source
+	sound.Source
 	env Envelope
 }
 
 func (e *eSrc) Receive(dst []float64) (int, error) {
 	nC := e.Source.Channels()
 	if len(dst)%nC != 0 {
-		return 0, snd.ChannelAlignmentError
+		return 0, sound.ChannelAlignmentError
 	}
 	n, err := e.Source.Receive(dst)
 	if err != nil {
@@ -106,6 +106,6 @@ func (e *eSrc) Receive(dst []float64) (int, error) {
 	return n, nil
 }
 
-func Env(src snd.Source, env Envelope) snd.Source {
+func Env(src sound.Source, env Envelope) sound.Source {
 	return &eSrc{Source: src, env: env}
 }

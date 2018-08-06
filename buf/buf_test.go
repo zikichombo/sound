@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/buf"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/buf"
+	"zikichombo.org/sound/freq"
 )
 
 func TestBufBasic(t *testing.T) {
@@ -39,11 +39,11 @@ func TestBufBasic(t *testing.T) {
 			t.Errorf("didn't get back %d", i)
 		}
 	}
-	if snd.Duration(b) != time.Duration(b.Len())*b.SampleRate().Period() {
-		t.Errorf("unexpected duration %s != %s", snd.Duration(b), b.SampleRate().Period())
+	if sound.Duration(b) != time.Duration(b.Len())*b.SampleRate().Period() {
+		t.Errorf("unexpected duration %s != %s", sound.Duration(b), b.SampleRate().Period())
 	}
-	fmt.Printf("dur: %s\n", snd.Duration(b))
-	_, ok := interface{}(b).(snd.Source)
+	fmt.Printf("dur: %s\n", sound.Duration(b))
+	_, ok := interface{}(b).(sound.Source)
 	if !ok {
 		t.Errorf("doesn't fit interface.")
 	}

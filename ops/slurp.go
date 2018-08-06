@@ -8,13 +8,13 @@
 package ops
 
 import (
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/sample"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/sample"
 )
 
 // SlurpCmplx is like Receive, but puts the result in
 // a complex128 slice.
-func SlurpCmplx(src snd.Source, dst []complex128) (int, error) {
+func SlurpCmplx(src sound.Source, dst []complex128) (int, error) {
 	sd := make([]float64, len(dst))
 	n, e := src.Receive(sd)
 	for i := range dst[:n] {
@@ -23,7 +23,7 @@ func SlurpCmplx(src snd.Source, dst []complex128) (int, error) {
 	return n, e
 }
 
-func SlurpFixed(src snd.Source, dst []int64, bps int) (int, error) {
+func SlurpFixed(src sound.Source, dst []int64, bps int) (int, error) {
 	tmp := make([]float64, len(dst))
 	n, e := src.Receive(tmp)
 	N := src.Channels() * n

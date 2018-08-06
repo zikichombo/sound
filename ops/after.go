@@ -6,11 +6,11 @@ package ops
 import (
 	"time"
 
-	"github.com/irifrance/snd"
+	"zikichombo.org/sound"
 )
 
 type after struct {
-	snd.Source
+	sound.Source
 	n int
 }
 
@@ -31,11 +31,11 @@ func (a *after) Receive(dst []float64) (int, error) {
 	return a.Source.Receive(dst)
 }
 
-func After(src snd.Source, n int) snd.Source {
+func After(src sound.Source, n int) sound.Source {
 	return &after{Source: src, n: n}
 }
 
-func AfterDur(src snd.Source, d time.Duration) snd.Source {
+func AfterDur(src sound.Source, d time.Duration) sound.Source {
 	p := src.SampleRate().Period()
 	n := d / p
 	return After(src, int(n))

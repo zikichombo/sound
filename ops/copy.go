@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/irifrance/snd"
+	"zikichombo.org/sound"
 )
 
 // Copy copies samples from src to dst until
@@ -25,9 +25,9 @@ import (
 //
 // 3. src and dst are incompatible.
 //
-func Copy(dst snd.Sink, src snd.Source) error {
+func Copy(dst sound.Sink, src sound.Source) error {
 	if src.SampleRate() != dst.SampleRate() || src.Channels() != dst.Channels() {
-		return fmt.Errorf("incompatible source/sink for copy: %s v %s\n", snd.Form(src), snd.Form(dst))
+		return fmt.Errorf("incompatible source/sink for copy: %s v %s\n", sound.Form(src), sound.Form(dst))
 	}
 	nC := src.Channels()
 	buf := make([]float64, 1024*nC)

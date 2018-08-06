@@ -3,10 +3,10 @@
 
 package ops
 
-import "github.com/irifrance/snd"
+import "zikichombo.org/sound"
 
 type amp struct {
-	snd.Source
+	sound.Source
 	by float64
 }
 
@@ -18,6 +18,6 @@ func (a *amp) Receive(dst []float64) (int, error) {
 	return n, e
 }
 
-func Amplify(src snd.Source, by float64) snd.Source {
+func Amplify(src sound.Source, by float64) sound.Source {
 	return &amp{Source: src, by: by}
 }

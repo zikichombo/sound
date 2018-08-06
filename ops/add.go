@@ -8,15 +8,15 @@
 package ops
 
 import (
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
 )
 
 // Add mixes the srcs into a single source.
 // If any of the sources has different sampling rate
 // or codec or number of channels, then Add
 // returns a nil source and a non-nil error.
-func Add(srcs ...snd.Source) (snd.Source, error) {
+func Add(srcs ...sound.Source) (sound.Source, error) {
 	if len(srcs) == 0 {
 		return nil, nil
 	}
@@ -28,7 +28,7 @@ func Add(srcs ...snd.Source) (snd.Source, error) {
 }
 
 // MustAdd is like Add but panics if the srcs are incompatible or 0-length.
-func MustAdd(srcs ...snd.Source) snd.Source {
+func MustAdd(srcs ...sound.Source) sound.Source {
 	src, err := Add(srcs...)
 	if err != nil {
 		panic(err.Error())
@@ -37,7 +37,7 @@ func MustAdd(srcs ...snd.Source) snd.Source {
 }
 
 type sAdd struct {
-	srcs []snd.Source
+	srcs []sound.Source
 	buf  []float64
 	err  error
 }
@@ -64,7 +64,7 @@ func (a *sAdd) Receive(dst []float64) (int, error) {
 			frms = n
 		}
 		if frms != n {
-			return 0, snd.ChannelAlignmentError
+			return 0, sound.ChannelAlignmentError
 		}
 		for i := 0; i < nC*frms; i++ {
 			dst[i] += a.buf[i]
@@ -118,7 +118,7 @@ func (m *sMul) Receive(dst []float64) (int, error) {
 			frms = n
 		}
 		if frms != n {
-			return 0, snd.ChannelAlignmentError
+			return 0, sound.ChannelAlignmentError
 		}
 		for i := 0; i < nC*frms; i++ {
 			dst[i] *= m.buf[i]

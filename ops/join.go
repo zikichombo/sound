@@ -10,12 +10,12 @@ package ops
 import (
 	"fmt"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
 )
 
 type join struct {
-	srcs []snd.Source
+	srcs []sound.Source
 	c    int
 }
 
@@ -29,7 +29,7 @@ func (j *join) Channels() int {
 
 func (j *join) Receive(dst []float64) (int, error) {
 	if len(dst)%len(j.srcs) != 0 {
-		return 0, snd.ChannelAlignmentError
+		return 0, sound.ChannelAlignmentError
 	}
 	n := len(dst) / len(j.srcs)
 	nf := -1
@@ -71,10 +71,10 @@ func (j *join) Close() error {
 // joins them into a single len(src)-channel source.
 //
 // If any of the sources has more than 1 channel,
-// or if there is any difference in the snd codec
+// or if there is any difference in the sound codec
 // or frequency of any of the sources, Join fails
 // returning a nil source and a non-nil error.
-func Join(srcs ...snd.Source) (snd.Source, error) {
+func Join(srcs ...sound.Source) (sound.Source, error) {
 	if len(srcs) == 0 {
 		return nil, fmt.Errorf("zero channel source not allowed.")
 	}

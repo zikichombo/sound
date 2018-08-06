@@ -10,12 +10,12 @@ package ops
 import (
 	"io"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
 )
 
 type concat struct {
-	srcs []snd.Source
+	srcs []sound.Source
 	n    int
 }
 
@@ -65,7 +65,7 @@ func (c *concat) Close() error {
 // ts should not contain any nil sources, or Concat or the
 // returned source may panic.  If ts is empty, Concat returns
 // nil.
-func Concat(ts ...snd.Source) snd.Source {
+func Concat(ts ...sound.Source) sound.Source {
 	if len(ts) == 0 {
 		return nil
 	}

@@ -6,10 +6,10 @@ package ops
 import (
 	"errors"
 
-	"github.com/irifrance/snd"
+	"zikichombo.org/sound"
 )
 
-func MixEven(srcs ...snd.Source) (snd.Source, error) {
+func MixEven(srcs ...sound.Source) (sound.Source, error) {
 	n := len(srcs)
 	if n == 0 {
 		return nil, errors.New("cannot mix 0 sources.")
@@ -22,7 +22,7 @@ func MixEven(srcs ...snd.Source) (snd.Source, error) {
 	return Amplify(added, 1.0/float64(n)), nil
 }
 
-func MustMixEven(srcs ...snd.Source) snd.Source {
+func MustMixEven(srcs ...sound.Source) sound.Source {
 	res, err := MixEven(srcs...)
 	if err != nil {
 		panic(err.Error())

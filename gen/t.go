@@ -12,10 +12,10 @@ import (
 	"math"
 	"math/rand"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
-	"github.com/irifrance/snd/ops"
-	"github.com/irifrance/snd/sample"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/ops"
+	"zikichombo.org/sound/sample"
 )
 
 type T struct {
@@ -70,11 +70,11 @@ func (s *s) Sample() (float64, error) {
 	return v, nil
 }
 
-func (t *T) Sin(f freq.T) snd.Source {
+func (t *T) Sin(f freq.T) sound.Source {
 	return t.SinPh(f, 0)
 }
 
-func (t *T) SinPh(f freq.T, off float64) snd.Source {
+func (t *T) SinPh(f freq.T, off float64) sound.Source {
 	var n float64
 	rps := t.freq.RadsPer(f)
 	fn := func() (float64, bool) {
@@ -88,11 +88,11 @@ func (t *T) SinPh(f freq.T, off float64) snd.Source {
 
 }
 
-func (t *T) Cos(f freq.T) snd.Source {
+func (t *T) Cos(f freq.T) sound.Source {
 	return t.CosPh(f, 0)
 }
 
-func (t *T) CosPh(f freq.T, off float64) snd.Source {
+func (t *T) CosPh(f freq.T, off float64) sound.Source {
 	var n float64
 	rps := t.freq.RadsPer(f)
 	fn := func() (float64, bool) {
@@ -105,7 +105,7 @@ func (t *T) CosPh(f freq.T, off float64) snd.Source {
 		fn: fn}
 }
 
-func (t *T) Chirp(l, step freq.T) snd.Source {
+func (t *T) Chirp(l, step freq.T) sound.Source {
 	instF := t.freq.RadsPer(l)
 	stepRads := t.freq.RadsPer(step)
 	n := 0.0
@@ -118,8 +118,8 @@ func (t *T) Chirp(l, step freq.T) snd.Source {
 	return &s{T: *t, fn: f}
 }
 
-func (t *T) Sins(rpss ...freq.T) snd.Source {
-	ss := make([]snd.Source, len(rpss))
+func (t *T) Sins(rpss ...freq.T) sound.Source {
+	ss := make([]sound.Source, len(rpss))
 	for i := range ss {
 		ss[i] = t.Sin(rpss[i])
 	}
@@ -127,7 +127,7 @@ func (t *T) Sins(rpss ...freq.T) snd.Source {
 	return res
 }
 
-func (t *T) Impulse() snd.Source {
+func (t *T) Impulse() sound.Source {
 	done := false
 	return &s{T: *t,
 		fn: func() (float64, bool) {
@@ -139,14 +139,14 @@ func (t *T) Impulse() snd.Source {
 		}}
 }
 
-func (t *T) Constant(v float64) snd.Source {
+func (t *T) Constant(v float64) sound.Source {
 	return &s{T: *t,
 		fn: func() (float64, bool) {
 			return v, false
 		}}
 }
 
-func (t *T) Squares(f freq.T) snd.Source {
+func (t *T) Squares(f freq.T) sound.Source {
 	rps := t.freq.RadsPer(f)
 	cur := float64(0)
 	return &s{T: *t, fn: func() (float64, bool) {
@@ -162,19 +162,19 @@ func (t *T) Squares(f freq.T) snd.Source {
 	}}
 }
 
-func (t *T) Noise() snd.Source {
+func (t *T) Noise() sound.Source {
 	return &s{T: *t, fn: func() (float64, bool) {
 		return rand.Float64(), false
 	}}
 }
 
-func (t *T) Silence() snd.Source {
+func (t *T) Silence() sound.Source {
 	return &s{T: *t, fn: func() (float64, bool) {
 		return 0.0, false
 	}}
 }
 
-func (t *T) Spikes(f freq.T) snd.Source {
+func (t *T) Spikes(f freq.T) sound.Source {
 	rps := t.freq.RadsPer(f)
 	cur := rps
 	return &s{T: *t, fn: func() (float64, bool) {
@@ -187,7 +187,7 @@ func (t *T) Spikes(f freq.T) snd.Source {
 	}}
 }
 
-func (t *T) Slice(d []float64) snd.Source {
+func (t *T) Slice(d []float64) sound.Source {
 	i := 0
 	return &s{T: *t, fn: func() (float64, bool) {
 		if i == len(d) {
@@ -199,19 +199,19 @@ func (t *T) Slice(d []float64) snd.Source {
 	}}
 }
 
-func (t *T) SliceCmplx(d []complex128) snd.Source {
+func (t *T) SliceCmplx(d []complex128) sound.Source {
 	sl := sample.FromCmplx(nil, d)
 	return t.Slice(sl)
 }
 
-func (t *T) Note(f freq.T) snd.Source {
+func (t *T) Note(f freq.T) sound.Source {
 	alpha := 0.8
 	N := 16
-	sins := make([]snd.Source, 0, N)
+	sins := make([]sound.Source, 0, N)
 
 	for i := 0; i < N; i++ {
 		a := math.Pow(alpha, float64(i))
-		var s snd.Source
+		var s sound.Source
 		sf := f * freq.T(i+1)
 		if t.freq.RadsPer(sf) >= math.Pi {
 			break
@@ -226,8 +226,8 @@ func (t *T) Note(f freq.T) snd.Source {
 	return r
 }
 
-func (t *T) Notes(f ...freq.T) snd.Source {
-	ns := make([]snd.Source, len(f))
+func (t *T) Notes(f ...freq.T) sound.Source {
+	ns := make([]sound.Source, len(f))
 	for i := range ns {
 		ns[i] = ops.Amplify(t.Note(f[i]), 1/float64(len(ns)))
 	}

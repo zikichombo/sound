@@ -3,12 +3,12 @@
 
 package ops
 
-import "github.com/irifrance/snd"
+import "zikichombo.org/sound"
 
 // Hop shifts buf left by shift elements and reads
 // up to shift elements into buf at the end by means
 // of src.Receive.
-func Hop(src snd.Source, buf []float64, shift int) (int, error) {
+func Hop(src sound.Source, buf []float64, shift int) (int, error) {
 	copy(buf, buf[shift:])
 	return src.Receive(buf[len(buf)-shift:])
 }

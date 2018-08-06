@@ -8,12 +8,12 @@
 package ops
 
 import (
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
 )
 
 type sel struct {
-	src snd.Source
+	src sound.Source
 	c   int
 	buf []float64
 }
@@ -25,7 +25,7 @@ type sel struct {
 // s, discarding unused channels and placing data from the selected channel in d.
 //
 // Select panics if c is out of bounds w.r.t. s.Channels().
-func Select(s snd.Source, c int) snd.Source {
+func Select(s sound.Source, c int) sound.Source {
 	if s.Channels() == 1 {
 		return s
 	}

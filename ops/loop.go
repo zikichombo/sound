@@ -6,12 +6,12 @@ package ops
 import (
 	"io"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/cil"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/cil"
 )
 
 type loop struct {
-	snd.SourceSeeker
+	sound.SourceSeeker
 	dil *cil.T
 	n   int
 }
@@ -19,7 +19,7 @@ type loop struct {
 func (l *loop) Receive(dst []float64) (int, error) {
 	nC := l.Channels()
 	if len(dst)%nC != 0 {
-		return 0, snd.ChannelAlignmentError
+		return 0, sound.ChannelAlignmentError
 	}
 	if l.n == 0 {
 		return 0, io.EOF
@@ -73,6 +73,6 @@ func (l *loop) Receive(dst []float64) (int, error) {
 // Loop creates a src which is src looped n times.
 // Loop will loop infinitely if n < 0 and will
 // terminate with EOF immediately if n == 0.
-func Loop(src snd.SourceSeeker, n int) snd.Source {
+func Loop(src sound.SourceSeeker, n int) sound.Source {
 	return &loop{SourceSeeker: src, n: n, dil: cil.New(src.Channels(), 1024)}
 }

@@ -6,8 +6,8 @@ package ops
 import (
 	"testing"
 
-	"github.com/irifrance/snd/buf"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound/buf"
+	"zikichombo.org/sound/freq"
 )
 
 func TestLoopMono(t *testing.T) {

@@ -6,18 +6,18 @@ package ops
 import (
 	"io"
 
-	"github.com/irifrance/snd"
+	"zikichombo.org/sound"
 )
 
 type up struct {
-	snd.Source
+	sound.Source
 	i, n int
 }
 
 func (u *up) Receive(dst []float64) (int, error) {
 	nC := u.Channels()
 	if len(dst)%nC != 0 {
-		return 0, snd.ChannelAlignmentError
+		return 0, sound.ChannelAlignmentError
 	}
 	nF := len(dst) / nC
 	rnF := (nF - u.i) / u.n
@@ -88,6 +88,6 @@ func (u *up) Receive(dst []float64) (int, error) {
 //  s0 0 ... 0 s1 0 ... 0 s2 0 ... 0 ...
 //     -------    -------    -------
 //     n times    n times    n times
-func Upsample(src snd.Source, n int) snd.Source {
+func Upsample(src sound.Source, n int) sound.Source {
 	return &up{Source: src, n: n}
 }

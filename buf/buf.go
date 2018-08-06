@@ -11,12 +11,12 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/cil"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/cil"
+	"zikichombo.org/sound/freq"
 )
 
-// Type Buf implements an in memory snd Seeker/Source/Sink
+// Type Buf implements an in memory sound Seeker/Source/Sink
 type T struct {
 	dat   []float64
 	freq  freq.T
@@ -28,7 +28,7 @@ type T struct {
 // FromSource reads in the source into a buffer (*T).
 // If an error occurs while reading other than io.EOF,
 // that error is returned.
-func FromSource(src snd.Source) (*T, error) {
+func FromSource(src sound.Source) (*T, error) {
 	b := New(src.SampleRate(), src.Channels())
 	buf := make([]float64, 1024)
 	for {
@@ -126,7 +126,7 @@ func (b *T) Channels() int {
 // data in dst.
 func (b *T) Receive(dst []float64) (int, error) {
 	if len(dst)%b.nchan != 0 {
-		return 0, snd.ChannelAlignmentError
+		return 0, sound.ChannelAlignmentError
 	}
 
 	n := len(dst)
@@ -154,11 +154,11 @@ func (b *T) Receive(dst []float64) (int, error) {
 	return f, nil
 }
 
-// Send implements snd.Sink, taking channel-deinterleaved data in d
+// Send implements sound.Sink, taking channel-deinterleaved data in d
 // and placing it in the memory buffer.
 func (b *T) Send(d []float64) error {
 	if len(d)%b.nchan != 0 {
-		return snd.ChannelAlignmentError
+		return sound.ChannelAlignmentError
 	}
 
 	frms := len(d) / b.nchan

@@ -8,23 +8,23 @@
 package gen
 
 import (
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
-	"github.com/irifrance/snd/ops"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/ops"
 )
 
 var _t = Default()
 
-func Sin(f freq.T) snd.Source {
+func Sin(f freq.T) sound.Source {
 	return _t.Sin(f)
 }
 
-func SinPh(f freq.T, off float64) snd.Source {
+func SinPh(f freq.T, off float64) sound.Source {
 	return _t.SinPh(f, off)
 }
 
-func Sins(fs ...freq.T) snd.Source {
-	ss := make([]snd.Source, len(fs))
+func Sins(fs ...freq.T) sound.Source {
+	ss := make([]sound.Source, len(fs))
 	for i := range ss {
 		ss[i] = Sin(fs[i])
 	}
@@ -32,7 +32,7 @@ func Sins(fs ...freq.T) snd.Source {
 	return res
 }
 
-func Impulse() snd.Source {
+func Impulse() sound.Source {
 	done := false
 	return mkGen(
 		func() (float64, bool) {
@@ -44,50 +44,50 @@ func Impulse() snd.Source {
 		})
 }
 
-func Constant(v float64) snd.Source {
+func Constant(v float64) sound.Source {
 	return mkGen(func() (float64, bool) {
 		return v, false
 	})
 }
 
-func Squares(f freq.T) snd.Source {
+func Squares(f freq.T) sound.Source {
 	return _t.Squares(f)
 }
 
-func Chirp(l, step freq.T) snd.Source {
+func Chirp(l, step freq.T) sound.Source {
 	return _t.Chirp(l, step)
 }
 
-func Noise() snd.Source {
+func Noise() sound.Source {
 	return _t.Noise()
 }
 
-func Silence() snd.Source {
+func Silence() sound.Source {
 	return mkGen(func() (float64, bool) {
 		return 0.0, false
 	})
 }
 
-func Spikes(fs freq.T) snd.Source {
+func Spikes(fs freq.T) sound.Source {
 	return _t.Spikes(fs)
 }
 
-func Slice(d []float64) snd.Source {
+func Slice(d []float64) sound.Source {
 	return _t.Slice(d)
 }
 
-func SliceCmplx(d []complex128) snd.Source {
+func SliceCmplx(d []complex128) sound.Source {
 	return _t.SliceCmplx(d)
 }
 
-func Note(f freq.T) snd.Source {
+func Note(f freq.T) sound.Source {
 	return _t.Note(f)
 }
 
-func Notes(fs ...freq.T) snd.Source {
+func Notes(fs ...freq.T) sound.Source {
 	return _t.Notes(fs...)
 }
 
-func mkGen(f func() (float64, bool)) snd.Source {
+func mkGen(f func() (float64, bool)) sound.Source {
 	return &s{T: *_t, fn: f}
 }

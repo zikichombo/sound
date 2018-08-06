@@ -10,20 +10,20 @@ package ops
 import (
 	"io"
 
-	"github.com/irifrance/snd"
+	"zikichombo.org/sound"
 )
 
 type pad struct {
-	snd.Source
+	sound.Source
 	d   float64
 	n   int
 	err error
 }
 
-// Pad returns a snd.Source ps which contains src
+// Pad returns a sound.Source ps which contains src
 // samples followed by n frames in which each
 // sample in each channel has sample p.
-func Pad(src snd.Source, p float64, n int) snd.Source {
+func Pad(src sound.Source, p float64, n int) sound.Source {
 	return &pad{
 		Source: src,
 		d:      p,

@@ -3,10 +3,10 @@
 
 package ops
 
-import "github.com/irifrance/snd"
+import "zikichombo.org/sound"
 
 type decimate struct {
-	snd.Source
+	sound.Source
 	i, n int
 	buf  []float64
 }
@@ -46,7 +46,7 @@ func (d *decimate) wFrames(f int) int {
 func (d *decimate) Receive(dst []float64) (int, error) {
 	nC := d.Channels()
 	if len(dst)%nC != 0 {
-		return 0, snd.ChannelAlignmentError
+		return 0, sound.ChannelAlignmentError
 	}
 	nF := len(dst) / nC
 	rF := d.rFrames(nF)
@@ -79,7 +79,7 @@ func (d *decimate) Receive(dst []float64) (int, error) {
 
 // Decimate returns an n-decimated src, i.e. Decimate drops
 // every n'th frame from src and puts the resulting stream
-// in the form of a snd.Source.
-func Decimate(src snd.Source, n int) snd.Source {
+// in the form of a sound.Source.
+func Decimate(src sound.Source, n int) sound.Source {
 	return &decimate{Source: src, n: n}
 }

@@ -7,10 +7,10 @@
 
 package ops
 
-import "github.com/irifrance/snd"
+import "zikichombo.org/sound"
 
 type zeros struct {
-	snd.Source
+	sound.Source
 	l, r  float64
 	z     float64
 	count int
@@ -36,7 +36,7 @@ func (z *zeros) Sample() (float64, error) {
 
 // Zeros counts the zero crossings in src.  src should be
 // mono-channel.
-func Zeros(src snd.Source) int {
+func Zeros(src sound.Source) int {
 	zs := &zeros{Source: src}
 	for {
 		_, e := zs.Sample()

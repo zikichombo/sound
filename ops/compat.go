@@ -10,13 +10,13 @@ package ops
 import (
 	"fmt"
 
-	"github.com/irifrance/snd"
+	"zikichombo.org/sound"
 )
 
 // Compat checks that srcs are compatible in
 // terms of sample codec, number of channels,
 // and sample rate.
-func Compat(srcs ...snd.Source) error {
+func Compat(srcs ...sound.Source) error {
 	if len(srcs) == 0 {
 		return nil
 	}

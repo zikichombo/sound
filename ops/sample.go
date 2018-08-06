@@ -3,9 +3,9 @@
 
 package ops
 
-import "github.com/irifrance/snd"
+import "zikichombo.org/sound"
 
-func Sample(src snd.Source) (float64, error) {
+func Sample(src sound.Source) (float64, error) {
 	var b [1]float64
 	_, e := src.Receive(b[:])
 	return b[0], e

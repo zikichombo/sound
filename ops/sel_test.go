@@ -7,8 +7,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/irifrance/snd"
-	"github.com/irifrance/snd/freq"
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
 )
 
 func TestSel(t *testing.T) {
@@ -19,7 +19,7 @@ func TestSel(t *testing.T) {
 	for i := range d {
 		d[i] = rand.Float64() - 0.5
 	}
-	src, snk := snd.Pipe(snd.NewForm(44100*freq.Hertz, nC))
+	src, snk := sound.Pipe(sound.NewForm(44100*freq.Hertz, nC))
 	defer snk.Close()
 	go snk.Send(d)
 	selSrc := Select(src, sC)

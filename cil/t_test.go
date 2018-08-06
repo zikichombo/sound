@@ -8,7 +8,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/irifrance/snd/cil"
+	"zikichombo.org/sound/cil"
 )
 
 func TestCilIdx(t *testing.T) {

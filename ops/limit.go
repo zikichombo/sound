@@ -11,17 +11,17 @@ import (
 	"io"
 	"time"
 
-	"github.com/irifrance/snd"
+	"zikichombo.org/sound"
 )
 
 type limit struct {
-	snd.Source
+	sound.Source
 	n int
 }
 
 // Limit returns a source which contains at most n frames
 // of samples from s.
-func Limit(s snd.Source, n int) snd.Source {
+func Limit(s sound.Source, n int) sound.Source {
 	return &limit{
 		Source: s,
 		n:      n}
@@ -32,7 +32,7 @@ func Limit(s snd.Source, n int) snd.Source {
 //
 //   floor(d / s.SampleRate().Period())
 //
-func LimitDur(s snd.Source, d time.Duration) snd.Source {
+func LimitDur(s sound.Source, d time.Duration) sound.Source {
 	f := s.SampleRate()
 	p := f.Period()
 	n := int(d / p)
