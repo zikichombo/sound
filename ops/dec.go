@@ -3,7 +3,10 @@
 
 package ops
 
-import "zikichombo.org/sound"
+import (
+	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
+)
 
 type decimate struct {
 	sound.Source
@@ -75,6 +78,11 @@ func (d *decimate) Receive(dst []float64) (int, error) {
 		j++
 	}
 	return wF, nil
+}
+
+func (d *decimate) SampleRate() freq.T {
+	r := d.Source.SampleRate()
+	return r / freq.T(d.n)
 }
 
 // Decimate returns an n-decimated src, i.e. Decimate drops

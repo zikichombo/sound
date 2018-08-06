@@ -7,6 +7,7 @@ import (
 	"io"
 
 	"zikichombo.org/sound"
+	"zikichombo.org/sound/freq"
 )
 
 type up struct {
@@ -73,6 +74,10 @@ func (u *up) Receive(dst []float64) (int, error) {
 	u.i += wF
 	u.i = u.i % u.n
 	return wF, nil
+}
+
+func (u *up) SampleRate() freq.T {
+	return freq.T(u.n) * u.Source.SampleRate()
 }
 
 // UpSample returns an up-sampled version of src.
