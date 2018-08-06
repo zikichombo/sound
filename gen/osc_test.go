@@ -7,7 +7,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/irifrance/audio/freq"
+	"zikichombo.org/sound/freq"
 )
 
 const eps = 1e-10
