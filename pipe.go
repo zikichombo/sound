@@ -8,6 +8,18 @@ import (
 	"sync"
 )
 
+// Pipe creates a pair of Source and Sink such that writes to the sink
+// are passed through to reads from the Source.
+//
+// The returned source, sink are safe for use in multiple goroutines.
+func Pipe(v Form) (Source, Sink) {
+	pC := make(chan *packet)
+	doneC := make(chan struct{})
+	nC := make(chan int)
+	p := &pipe{Form: v, pC: pC, doneC: doneC, nC: nC}
+	return p, p
+}
+
 type pipe struct {
 	Form
 	wMu   sync.Mutex
@@ -119,16 +131,4 @@ func copyFrames(dst *packet, src *packet, nc int) int {
 		copy(dst.sl[dStart:dEnd], src.sl[sStart:sEnd])
 	}
 	return t
-}
-
-// Pipe creates a pair of Source and Sink such that writes to the sink
-// are passed through to reads from the Source.
-//
-// The returned source, sink are safe for use in multiple goroutines.
-func Pipe(v Form) (Source, Sink) {
-	pC := make(chan *packet)
-	doneC := make(chan struct{})
-	nC := make(chan int)
-	p := &pipe{Form: v, pC: pC, doneC: doneC, nC: nC}
-	return p, p
 }
