@@ -10,7 +10,7 @@ import "time"
 type Seeker interface {
 	Form
 	Pos() int64         // Where we currently are in the source
-	Len() int64         // Length of the source in samples
+	Len() int64         // Length of the source in frames
 	Seek(f int64) error // Seek goes to the frame index f
 }
 
