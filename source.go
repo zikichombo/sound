@@ -13,7 +13,7 @@ type Source interface {
 	// any error.  Receive may use all of d as scatch space.
 	//
 	// Receive returns a non-nil error if and only if it returns 0 frames
-	// received.  Receive may return 0 < n < len(d) samples only
+	// received.  Receive may return 0 < n < len(d)/Channels() frames only
 	// if the subsequent call will return (0, io.EOF).  As a result, the
 	// caller need not be concerned with whether or not the data is "ready".
 	//
