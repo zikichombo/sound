@@ -26,18 +26,18 @@ var Discard Sink = &discard{}
 
 type discard struct{}
 
-func (d *discard) Send(v []float64) error {
+func (*discard) Send(d []float64) error {
 	return nil
 }
 
-func (d *discard) Close() error {
+func (*discard) Close() error {
 	return nil
 }
 
-func (d *discard) SampleRate() freq.T {
+func (*discard) SampleRate() freq.T {
 	return 0
 }
 
-func (d *discard) Channels() int {
+func (*discard) Channels() int {
 	return 1
 }
