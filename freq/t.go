@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// Type Frequency represents a frequency.
+// T represents a frequency.
 type T int64
 
 // Different levels of "ouch".
@@ -105,7 +105,7 @@ func (f T) Phase(d time.Duration) float64 {
 	return 2.0 * math.Pi * (math.Mod(df, p) / p)
 }
 
-// RadPerAt gives the radians per sample of a signal at frequency f sampled at
+// RadsPerAt gives the radians per sample of a signal at frequency f sampled at
 // frequency r.
 func (f T) RadsPerAt(s T) float64 {
 	d := float64(f) / float64(s)
