@@ -32,7 +32,7 @@ func NewForm(f freq.T, c int) Form {
 	return &_form{c: c, f: f}
 }
 
-// Interface Form specifies the logical content of pcm audio data.  data,
+// Interface Form specifies the logical content of pcm audio data,
 // namely the number of channels and the sample rate.  Form does not specify
 // the in-memory layout of pcm audio data such as sample codec or whether or
 // not the data is channel-interleaved.
@@ -49,7 +49,7 @@ func MonoCd() Form {
 	return &_form{c: 1, f: 44100 * freq.Hertz}
 }
 
-// MonoDvd gives a mono-channel Form at Dvd sample rate (48kHz).
+// MonoDvd gives a mono-channel form at Dvd sample rate (48kHz).
 func MonoDvd() Form {
 	return &_form{c: 1, f: 48000 * freq.Hertz}
 }
@@ -59,7 +59,7 @@ func StereoCd() Form {
 	return &_form{c: 2, f: 44100 * freq.Hertz}
 }
 
-// StereoDvd gives a 2-channel Form at Dvd sample rate (48kHz).
+// StereoDvd gives a 2-channel form at Dvd sample rate (48kHz).
 func StereoDvd() Form {
 	return &_form{c: 2, f: 48000 * freq.Hertz}
 }
