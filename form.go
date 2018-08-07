@@ -49,12 +49,12 @@ func MonoCd() Form {
 	return &_form{c: 1, f: 44100 * freq.Hertz}
 }
 
-// MonoDvd gives a mono-channel form at Dvd sample rate (48kHz).
+// MonoDvd gives a single channel form at Dvd sample rate (48kHz).
 func MonoDvd() Form {
 	return &_form{c: 1, f: 48000 * freq.Hertz}
 }
 
-// StereoCd returns a stereo form at CD sampling rate.
+// StereoCd returns a 2-channel form at CD sampling rate.
 func StereoCd() Form {
 	return &_form{c: 2, f: 44100 * freq.Hertz}
 }
