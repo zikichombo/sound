@@ -129,7 +129,7 @@ func (s Codec) FromFloat64(v float64) uint64 {
 	return bo.Uint64(dst[:])
 }
 
-// Decode decodes source samples encoded ito src using codec
+// Decode decodes source samples encoded into src using codec
 // s into a slice of float64s.
 //
 // If len(dst)*s.Bytes() > len(src) then Decode panics.

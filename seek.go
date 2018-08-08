@@ -34,9 +34,9 @@ type SinkSeeker interface {
 // support.
 type RandomAccess interface {
 	Seeker
-	// Receive is specified as in Source.
+	// Receive is as specified in Source.Receive.
 	Receive(dst []float64) (int, error)
-	// Send is specified as in Sink.
+	// Send is as specified as in Sink.Send.
 	Send(src []float64) error
 }
 
@@ -53,7 +53,7 @@ func When(s Seeker) time.Duration {
 	return s2d(s, s.Pos())
 }
 
-// Durations takes a Seeker and returns its total duration in
+// Duration takes a Seeker and returns its total duration in
 // time.
 func Duration(s Seeker) time.Duration {
 	return s2d(s, s.Len())

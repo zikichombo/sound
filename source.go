@@ -3,7 +3,7 @@
 
 package sound
 
-// Source is an interface for a source of samples
+// Source is an interface for a source of samples.
 type Source interface {
 	Form
 	Closer
