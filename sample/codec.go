@@ -11,18 +11,18 @@ import (
 type Codec int
 
 const (
-	SInt8     Codec = iota
-	SByte     Codec = iota
-	SInt16L   Codec = iota // little endian 2 byte
-	SInt16B   Codec = iota // big endian 2 byte
-	SInt24L   Codec = iota // little endian 3 byte
-	SInt24B   Codec = iota // big endian 3 byte
-	SInt32L   Codec = iota // little endian 4 byte
-	SInt32B   Codec = iota // big endian 4 byte
-	SFloat32L Codec = iota // float32 bits stored uint32 little endian
-	SFloat32B Codec = iota // float32 bits stored uint32 big endian
-	SFloat64L Codec = iota // float64 bits stored uint64 little endian
-	SFloat64B Codec = iota // float64 bits stored uint64 big endian
+	SInt8 Codec = iota
+	SByte
+	SInt16L   // little endian 2 byte
+	SInt16B   // big endian 2 byte
+	SInt24L   // little endian 3 byte
+	SInt24B   // big endian 3 byte
+	SInt32L   // little endian 4 byte
+	SInt32B   // big endian 4 byte
+	SFloat32L // float32 bits stored uint32 little endian
+	SFloat32B // float32 bits stored uint32 big endian
+	SFloat64L // float64 bits stored uint64 little endian
+	SFloat64B // float64 bits stored uint64 big endian
 )
 
 // Codecs lists all codecs.
