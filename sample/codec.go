@@ -139,12 +139,12 @@ func (s Codec) Decode(dst []float64, src []byte) {
 	case SInt8:
 		for i := range dst {
 			b := src[i]
-			dst[i] = float64(b) / 128.0
+			dst[i] = float64(b) / float64(1<<7)
 		}
 	case SByte:
 		for i := range dst {
 			b := src[i]
-			dst[i] = float64(-int8(b)) / 128.0
+			dst[i] = float64(-int8(b)) / float64(1<<7)
 		}
 	case SInt16L:
 		start := 0
