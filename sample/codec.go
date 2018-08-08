@@ -229,12 +229,12 @@ func (s Codec) Encode(dst []byte, src []float64) {
 	le, be := binary.LittleEndian, binary.BigEndian
 	switch s {
 	case SInt8:
-		for i, b := range src {
-			dst[i] = byte(int8(b * 128.0))
+		for i, v := range src {
+			dst[i] = byte(int8(v * float64(1<<7)))
 		}
 	case SByte:
-		for i, b := range src {
-			dst[i] = byte(-int8(b * 128.0))
+		for i, v := range src {
+			dst[i] = byte(-int8(v * float64(1<<7)))
 		}
 	case SInt16L:
 		start := 0
