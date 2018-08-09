@@ -6,8 +6,8 @@ package ops
 import (
 	"testing"
 
-	"zikichombo.org/sound/buf"
 	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/sndbuf"
 )
 
 func TestLoopMono(t *testing.T) {
@@ -18,7 +18,7 @@ func TestLoopMono(t *testing.T) {
 	for i := 5; i < 10; i++ {
 		d[i] = 1.0
 	}
-	src := buf.FromSlice(d, freq.Hertz)
+	src := sndbuf.FromSlice(d, freq.Hertz)
 	loop := Loop(src, 3)
 	e := make([]float64, 25)
 	n, err := loop.Receive(e)
@@ -52,7 +52,7 @@ func TestLoopMonoSmallRecv(t *testing.T) {
 	for i := 5; i < 10; i++ {
 		d[i] = 1.0
 	}
-	src := buf.FromSlice(d, freq.Hertz)
+	src := sndbuf.FromSlice(d, freq.Hertz)
 	loop := Loop(src, 3)
 	e := make([]float64, 1)
 	for i := 0; i < 5; i++ {
@@ -88,7 +88,7 @@ func TestLoopStereo(t *testing.T) {
 		d[2*i] = 1.0
 		d[2*i+1] = 1.0
 	}
-	src := buf.FromSliceChans(d, 2, freq.Hertz)
+	src := sndbuf.FromSliceChans(d, 2, freq.Hertz)
 	loop := Loop(src, 3)
 	e := make([]float64, 50)
 	n, err := loop.Receive(e)

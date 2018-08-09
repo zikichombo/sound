@@ -8,8 +8,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"zikichombo.org/sound/buf"
 	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/sndbuf"
 )
 
 func TestDecimateMonoChan(t *testing.T) {
@@ -19,7 +19,7 @@ func TestDecimateMonoChan(t *testing.T) {
 	for i := range d {
 		d[i] = 2.0*rand.Float64() - 1.0
 	}
-	src := buf.FromSlice(d, freq.Hertz)
+	src := sndbuf.FromSlice(d, freq.Hertz)
 	dec := Decimate(src, 3)
 	t.Logf("dec(3): %v:\n", d)
 	for {
@@ -41,7 +41,7 @@ func TestDecimateStereo(t *testing.T) {
 	for i := range d {
 		d[i] = 2.0*rand.Float64() - 1.0
 	}
-	src := buf.FromSliceChans(d, 2, freq.Hertz)
+	src := sndbuf.FromSliceChans(d, 2, freq.Hertz)
 	dec := Decimate(src, 3)
 	t.Logf("dec(3): %v:\n", d)
 	for {

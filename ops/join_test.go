@@ -7,8 +7,8 @@ import (
 	"io"
 	"testing"
 
-	"zikichombo.org/sound/buf"
 	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/sndbuf"
 )
 
 func TestJoin(t *testing.T) {
@@ -20,8 +20,8 @@ func TestJoin(t *testing.T) {
 	for i := range twos {
 		twos[i] = 2
 	}
-	one := buf.FromSlice(ones, 44100*freq.Hertz)
-	two := buf.FromSlice(twos, 44100*freq.Hertz)
+	one := sndbuf.FromSlice(ones, 44100*freq.Hertz)
+	two := sndbuf.FromSlice(twos, 44100*freq.Hertz)
 	src, _ := Join(one, two)
 
 	d := make([]float64, 64)

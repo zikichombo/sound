@@ -8,8 +8,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"zikichombo.org/sound/buf"
 	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/sndbuf"
 )
 
 func TestUpSampleMono(t *testing.T) {
@@ -20,7 +20,7 @@ func TestUpSampleMono(t *testing.T) {
 		e[i] = 2.0*rand.Float64() - 1.0
 	}
 	t.Logf("input: %v\n", e)
-	src := buf.FromSlice(e, freq.Hertz)
+	src := sndbuf.FromSlice(e, freq.Hertz)
 	up := Upsample(src, 3)
 	n, err := up.Receive(d)
 	if n != N {
@@ -51,7 +51,7 @@ func TestUpSampleStereo(t *testing.T) {
 		e[i] = 2.0*rand.Float64() - 1.0
 	}
 	t.Logf("input: %v\n", e)
-	src := buf.FromSliceChans(e, 2, freq.Hertz)
+	src := sndbuf.FromSliceChans(e, 2, freq.Hertz)
 	up := Upsample(src, 3)
 	n, err := up.Receive(d)
 	if n*2 != N {

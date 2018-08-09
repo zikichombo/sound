@@ -1,7 +1,7 @@
 // Copyright 2018 The ZikiChomgo Authors. All rights reserved.  Use of this source
 // code is governed by a license that can be found in the License file.
 
-package buf_test
+package sndbuf_test
 
 import (
 	"fmt"
@@ -9,12 +9,12 @@ import (
 	"time"
 
 	"zikichombo.org/sound"
-	"zikichombo.org/sound/buf"
 	"zikichombo.org/sound/freq"
+	"zikichombo.org/sound/sndbuf"
 )
 
 func TestBufBasic(t *testing.T) {
-	b := buf.New(44100*freq.Hertz, 1)
+	b := sndbuf.New(44100*freq.Hertz, 1)
 	N := 1024
 	for i := 0; i < N; i++ {
 		b.Send([]float64{float64(i)})
