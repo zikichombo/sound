@@ -91,7 +91,7 @@ func (u *up) SampleRate() freq.T {
 // channels are in the form
 //
 //  s0 0 ... 0 s1 0 ... 0 s2 0 ... 0 ...
-//  ---------- ----------  ---------
+//  ---------- ---------- ----------
 //   n samples  n samples  n samples
 func Upsample(src sound.Source, n int) sound.Source {
 	return &up{Source: src, n: n}
