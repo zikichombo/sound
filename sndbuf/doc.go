@@ -3,5 +3,5 @@
 
 // Package buf provides in memory audio sources and sinks.
 //
-// Buffers are always interleaved.
+// Buffers are always channel interleaved.
 package sndbuf /* import "zikichombo.org/sound/sndbuf" */
