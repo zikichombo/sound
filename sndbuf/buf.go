@@ -41,7 +41,7 @@ func FromSource(src sound.Source) (*T, error) {
 	return b, nil
 }
 
-// New creates a new snd buffer at sampling frequency f with c channels.
+// New creates a new sound buffer at sampling frequency f with c channels.
 func New(f freq.T, c int) *T {
 	return &T{
 		dat:   make([]float64, 0, 1024),
@@ -72,7 +72,7 @@ func FromSliceChans(ds []float64, nc int, f freq.T) *T {
 		pos:   0}
 }
 
-// Slice returns the slice of in-memory samples storing the snd data.
+// Slice returns the slice of in-memory samples storing the sound data.
 //
 // The backing slice is channel-interleaved.  This differs from
 // the Source/Sink expected interface; however it is a natural fit
@@ -108,12 +108,12 @@ func (b *T) SplitTo(dst []*T) []*T {
 	return dst
 }
 
-// SampleRate returns the sampling frequency of the snd buffer.
+// SampleRate returns the sampling frequency of the sound buffer.
 func (b *T) SampleRate() freq.T {
 	return b.freq
 }
 
-// Channels returns the number of channels in the snd buffer.
+// Channels returns the number of channels in the sound buffer.
 func (b *T) Channels() int {
 	return b.nchan
 }
