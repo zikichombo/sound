@@ -82,3 +82,13 @@ func Join(srcs ...sound.Source) (sound.Source, error) {
 	}
 	return &join{srcs: srcs}, nil
 }
+
+// MustJoin is like Join but it panics in case of an
+// error.
+func MustJoin(srcs ...sound.Source) sound.Source {
+	res, e := Join(srcs...)
+	if e != nil {
+		panic(e.Error())
+	}
+	return res
+}
