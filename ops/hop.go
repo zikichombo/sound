@@ -8,12 +8,10 @@ import "zikichombo.org/sound"
 // Hop shifts buf left by shift frames and reads up to shift frames into buf at
 // the end by means of src.Receive.
 //
-// buf is assumed to be channel de-interleaved.
+// buf is assumed to mono-channel.
 //
 // Hop returns the result of src.Receive.
 func Hop(src sound.Source, buf []float64, shift int) (int, error) {
-	nC := src.Channels()
-	cShift := shift * nC
-	copy(buf, buf[cShift:])
-	return src.Receive(buf[len(buf)-cShift:])
+	copy(buf, buf[shift:])
+	return src.Receive(buf[len(buf)-shift:])
 }
