@@ -5,7 +5,7 @@ package sound
 
 import "errors"
 
-// ChannelAlignmentError is returned by sources and sinks
+// ErrChannelAlignment is returned by sources and sinks
 // when the input/output slices aren't sized correctly
 // with respect to the number of channels
 // in the sink/source.  More concretely this error is returned
@@ -17,4 +17,4 @@ import "errors"
 //
 // Because the buffers d don't contain a number of samples representing
 // one sample for all channels for all represented points in time.
-var ChannelAlignmentError = errors.New("Channels misaligned")
+var ErrChannelAlignment = errors.New("Channels misaligned")

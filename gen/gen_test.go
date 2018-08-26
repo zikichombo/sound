@@ -1,6 +1,13 @@
 // Copyright 2018 The ZikiChombo Authors. All rights reserved.  Use of this source
 // code is governed by a license that can be found in the License file.
 
+// +build listen
+
+// this package introduces a dependency on the codec module, which
+// makes things confusing.  It also doesn't really test anything
+// but rather just creates wav files for listening tests.
+//
+// so we've made it ignored by default with the build tag "listen".
 package gen_test
 
 import (
@@ -18,7 +25,6 @@ func TestNote(t *testing.T) {
 	if e := wav.Save(a, "a3.wav"); e != nil {
 		t.Fatal(e)
 	}
-
 }
 
 func TestNotes(t *testing.T) {

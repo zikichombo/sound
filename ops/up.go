@@ -18,7 +18,7 @@ type up struct {
 func (u *up) Receive(dst []float64) (int, error) {
 	nC := u.Channels()
 	if len(dst)%nC != 0 {
-		return 0, sound.ChannelAlignmentError
+		return 0, sound.ErrChannelAlignment
 	}
 	nF := len(dst) / nC
 	rnF := (nF - u.i) / u.n

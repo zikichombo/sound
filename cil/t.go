@@ -66,7 +66,7 @@ func (t *T) Len() int {
 // for each channel.
 //
 // If len(raw) is not a multiple of the number of channels expected by t
-// (specified in the constructor), then Inter returns sound.ChannelAlignmentError.
+// (specified in the constructor), then Inter returns sound.ErrChannelAlignment
 //
 // raw's frame count may differ from that given in the constructor.
 //
@@ -76,7 +76,7 @@ func (t *T) Inter(raw []float64) error {
 	}
 	N := len(raw)
 	if N%t.c != 0 {
-		return sound.ChannelAlignmentError
+		return sound.ErrChannelAlignment
 	}
 	orgF := t.f
 	defer t.SetFrames(orgF)
@@ -107,7 +107,7 @@ func (t *T) Inter(raw []float64) error {
 //
 // raw's frame count may differ from that given in t's constructor.
 //
-// Deinter returns a sound.ChannelAlignmentError if len(raw)%nC != 0
+// Deinter returns a sound.ErrChannelAlignment if len(raw)%nC != 0
 // where nC is the number of channels given in the constructor.
 func (t *T) Deinter(raw []float64) error {
 	if t.c == 1 {
@@ -115,7 +115,7 @@ func (t *T) Deinter(raw []float64) error {
 	}
 	N := len(raw)
 	if N%t.c != 0 {
-		return sound.ChannelAlignmentError
+		return sound.ErrChannelAlignment
 	}
 	orgF := t.f
 	defer t.SetFrames(orgF)

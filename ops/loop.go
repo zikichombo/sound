@@ -19,7 +19,7 @@ type loop struct {
 func (l *loop) Receive(dst []float64) (int, error) {
 	nC := l.Channels()
 	if len(dst)%nC != 0 {
-		return 0, sound.ChannelAlignmentError
+		return 0, sound.ErrChannelAlignment
 	}
 	if l.n == 0 {
 		return 0, io.EOF

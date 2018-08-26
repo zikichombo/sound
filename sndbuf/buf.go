@@ -122,7 +122,7 @@ func (b *T) Channels() int {
 // data in dst.
 func (b *T) Receive(dst []float64) (int, error) {
 	if len(dst)%b.nchan != 0 {
-		return 0, sound.ChannelAlignmentError
+		return 0, sound.ErrChannelAlignment
 	}
 
 	n := len(dst)
@@ -154,7 +154,7 @@ func (b *T) Receive(dst []float64) (int, error) {
 // and placing it in the memory buffer.
 func (b *T) Send(d []float64) error {
 	if len(d)%b.nchan != 0 {
-		return sound.ChannelAlignmentError
+		return sound.ErrChannelAlignment
 	}
 
 	frms := len(d) / b.nchan

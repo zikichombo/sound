@@ -25,7 +25,7 @@ func (j *join) Channels() int {
 
 func (j *join) Receive(dst []float64) (int, error) {
 	if len(dst)%len(j.srcs) != 0 {
-		return 0, sound.ChannelAlignmentError
+		return 0, sound.ErrChannelAlignment
 	}
 	n := len(dst) / len(j.srcs)
 	nf := -1

@@ -38,7 +38,7 @@ type packet struct {
 func (p *pipe) Send(d []float64) error {
 	nC := p.Channels()
 	if len(d)%nC != 0 {
-		return ChannelAlignmentError
+		return ErrChannelAlignment
 	}
 	trgFrms := len(d) / nC
 	pkt := &packet{sl: d}
@@ -70,7 +70,7 @@ func (p *pipe) Close() error {
 func (p *pipe) Receive(dst []float64) (int, error) {
 	nC := p.Channels()
 	if len(dst)%nC != 0 {
-		return 0, ChannelAlignmentError
+		return 0, ErrChannelAlignment
 	}
 	dPkt := &packet{sl: dst, n: 0}
 	inFrms := len(dst) / nC
