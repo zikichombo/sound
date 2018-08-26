@@ -82,7 +82,7 @@ type eSrc struct {
 func (e *eSrc) Receive(dst []float64) (int, error) {
 	nC := e.Source.Channels()
 	if len(dst)%nC != 0 {
-		return 0, sound.ChannelAlignmentError
+		return 0, sound.ErrChannelAlignment
 	}
 	n, err := e.Source.Receive(dst)
 	if err != nil {

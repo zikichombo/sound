@@ -14,7 +14,7 @@ type Sink interface {
 	//
 	// len(d) must be a multiple of the number of channels
 	// associated with the Sink, or Send will return a
-	// ChannelAlignmentError.
+	// ErrChannelAlignment.
 	//
 	// In case the Sink is multi-channel, d is interpreted in
 	// channel-deinterleaved format.

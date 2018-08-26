@@ -19,7 +19,7 @@ type Source interface {
 	//
 	// Receive returns multi-channel data in de-interleaved format.
 	// If len(d) is not a multiple of Channels(), then Receive returns
-	// ChannelAlignmentError.  If Receive returns fewer than len(d)/Channels()
+	// ErrChannelAlignment.  If Receive returns fewer than len(d)/Channels()
 	// frames, then the deinterleaved data of n frames is arranged in
 	// the prefix d[:n*Channels()].
 	Receive(d []float64) (int, error)

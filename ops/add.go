@@ -60,7 +60,7 @@ func (a *sAdd) Receive(dst []float64) (int, error) {
 			frms = n
 		}
 		if frms != n {
-			return 0, sound.ChannelAlignmentError
+			return 0, sound.ErrChannelAlignment
 		}
 		for i := 0; i < nC*frms; i++ {
 			dst[i] += a.buf[i]
@@ -114,7 +114,7 @@ func (m *sMul) Receive(dst []float64) (int, error) {
 			frms = n
 		}
 		if frms != n {
-			return 0, sound.ChannelAlignmentError
+			return 0, sound.ErrChannelAlignment
 		}
 		for i := 0; i < nC*frms; i++ {
 			dst[i] *= m.buf[i]

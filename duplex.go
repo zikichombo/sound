@@ -16,11 +16,11 @@ type Duplex interface {
 	// SendReceive on a duplex connection will play out
 	// and capture to in.
 	//
-	// SendReceive returns a ChannelAlignmentError if
+	// SendReceive returns a ErrChannelAlignment if
 	// len(in) is not a multiple of InChannels() and also
 	// if len(out) is not a multiple of OutChannels().
 	//
-	// SendReceive returns a FrameAlignmentError if
+	// SendReceive returns a ErrFrameAlignment if
 	// the number of frames in out is not equal to the number
 	// of frames in in.
 	//
@@ -34,4 +34,4 @@ type Duplex interface {
 }
 
 // See Duplex.SendReceive
-var FrameAlignmentError = errors.New("duplex frames misaligned.")
+var ErrFrameAlignment = errors.New("duplex frames misaligned.")
