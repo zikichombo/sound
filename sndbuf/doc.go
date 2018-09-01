@@ -4,4 +4,6 @@
 // Package sndbuf provides in memory audio sources and sinks.
 //
 // Buffers are always channel interleaved.
+//
+// Package sndbuf is part of http://zikichombo.org
 package sndbuf /* import "zikichombo.org/sound/sndbuf" */

@@ -4,4 +4,5 @@
 // Package ops provides basic source and channel operations which do not
 // require multiplexing io.
 //
+// Package ops is part of http://zikichombo.org
 package ops /* import "zikichombo.org/sound/ops" */
