@@ -37,3 +37,19 @@ func ToFloats(dst []float64, src []int64, nBits int) []float64 {
 	}
 	return dst
 }
+
+func Int32ToFloat(d int32, nBits int) float64 {
+	s := float64(int32(1 << uint(nBits-1)))
+	return float64(d) / s
+}
+
+func Int32sToFloats(dst []float64, src []int32, nBits int) []float64 {
+	if cap(dst) < len(src) {
+		dst = make([]float64, len(src))
+	}
+	dst = dst[:len(src)]
+	for i, v := range src {
+		dst[i] = Int32ToFloat(v, nBits)
+	}
+	return dst
+}
