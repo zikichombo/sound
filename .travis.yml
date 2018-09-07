@@ -15,8 +15,7 @@ env:
     - PATH=$GOPATH/bin:$PATH
 
 install:
-  - cd ${GOPATH}/src/zikichombo.org/sound
-  - go get -t ./...
+  - go get -t zikichombo.org/sound/...
 
 before_script:
   - go get -u golang.org/x/tools/cmd/cover
