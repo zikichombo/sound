@@ -11,11 +11,18 @@ notifications:
 
 env:
   global:
-    - GOPATH=$HOME/gopath
     - PATH=$GOPATH/bin:$PATH
 
+before_install:
+  # Move git repo cloned by Travis-CI as then we get the correct branch
+  # automatically.
+  - mkdir -p ${GOPATH}src/zikichombo.org
+  - cd ..
+  - mv sound ${GOPATH}src/zikichombo.org/
+  - cd ${GOPATH}src/zikichombo.org/sound
+
 install:
-  - go get -t zikichombo.org/sound/...
+  - go get -t ./...
 
 before_script:
   - go get -u golang.org/x/tools/cmd/cover
@@ -24,11 +31,9 @@ before_script:
   - go get -u github.com/mattn/goveralls
   - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
   # TODO: Move mewmew/ci to zc/meta?
-  - cd ${GOPATH}/src/zikichombo.org/sound
   - wget https://raw.githubusercontent.com/mewmew/ci/master/ci_checks.sh
   - chmod +x ci_checks.sh
 
 script:
-  - cd ${GOPATH}/src/zikichombo.org/sound
   - go test ./...
   - ./ci_checks.sh
