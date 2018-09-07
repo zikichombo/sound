@@ -31,7 +31,8 @@ before_script:
   - go get -u github.com/golang/lint/golint
   - go get -u github.com/mattn/goveralls
   - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
-  - wget https://raw.githubusercontent.com/zikichombo/meta/master/ci_checks.sh
+  # TODO: Move mewmew/ci to zc/meta?
+  - wget https://raw.githubusercontent.com/mewmew/ci/master/ci_checks.sh
   - chmod +x ci_checks.sh
 
 script:
