@@ -15,7 +15,7 @@ env:
     - PATH=$GOPATH/bin:$PATH
 
 install:
-  - cd ${$GOPATH}/src/zikichombo.org/sound
+  - cd ${GOPATH}/src/zikichombo.org/sound
   - go get -t ./...
 
 before_script:
@@ -29,6 +29,6 @@ before_script:
   - chmod +x ci_checks.sh
 
 script:
-  - cd ${$GOPATH}/src/zikichombo.org/sound
+  - cd ${GOPATH}/src/zikichombo.org/sound
   - go test ./...
   - ./ci_checks.sh
