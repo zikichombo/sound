@@ -2,16 +2,32 @@ language: go
 
 go:
   - "1.10"
+  - "1.11"
   - "tip"
 
 notifications:
   on_success: false
   on_failure: always
 
-install: go get -t zikichombo.org/sound/...
+env:
+  global:
+    - GOPATH=$HOME/gopath
+    - PATH=$GOPATH/bin:$PATH
 
-script: go test zikichombo.org/sound/...
+install:
+  - cd ${$GOPATH}/src/zikichombo.org/sound
+  - go get -t ./...
 
+before_script:
+  - go get -u golang.org/x/tools/cmd/cover
+  - go get -u golang.org/x/tools/cmd/goimports
+  - go get -u github.com/golang/lint/golint
+  - go get -u github.com/mattn/goveralls
+  - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+  - wget https://raw.githubusercontent.com/mewmew/ci/master/ci_checks.sh
+  - chmod +x ci_checks.sh
 
-
-
+script:
+  - cd ${$GOPATH}/src/zikichombo.org/sound
+  - go test ./...
+  - ./ci_checks.sh
