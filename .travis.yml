@@ -9,16 +9,12 @@ notifications:
   on_success: false
   on_failure: always
 
-env:
-  global:
-    - PATH=$GOPATH/bin:$PATH
-
 before_install:
   # Move git repo cloned by Travis-CI as then we get the correct branch
   # automatically.
-  - mkdir -p ${GOPATH}/src/zikichombo.org
-  - cd ..
-  - mv sound ${GOPATH}/src/zikichombo.org/
+  - mkdir -p ${GOPATH}/src/zikichombo.org/sound
+  - rsync -az ${TRAVIS_BUILD_DIR}/ ${GOPATH}/src/zikichombo.org/sound
+  - export TRAVIS_BUILD_DIR=${GOPATH}/src/zikichombo.org/sound
   - cd ${GOPATH}/src/zikichombo.org/sound
 
 install:
