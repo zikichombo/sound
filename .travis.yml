@@ -16,10 +16,10 @@ env:
 before_install:
   # Move git repo cloned by Travis-CI as then we get the correct branch
   # automatically.
-  - mkdir -p ${GOPATH}src/zikichombo.org
+  - mkdir -p ${GOPATH}/src/zikichombo.org
   - cd ..
-  - mv sound ${GOPATH}src/zikichombo.org/
-  - cd ${GOPATH}src/zikichombo.org/sound
+  - mv sound ${GOPATH}/src/zikichombo.org/
+  - cd ${GOPATH}/src/zikichombo.org/sound
 
 install:
   - go get -t ./...
@@ -35,5 +35,4 @@ before_script:
   - chmod +x ci_checks.sh
 
 script:
-  - go test ./...
   - ./ci_checks.sh
