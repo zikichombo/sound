@@ -134,7 +134,7 @@ func (s T) FreqOf(rps float64) T {
 	return T(int64(math.Floor(m + 0.5)))
 }
 
-func (f T) MarhsalJSON() ([]byte, error) {
+func (f T) MarshalJSON() ([]byte, error) {
 	return json.Marshal(int64(f / Hertz))
 }
 
