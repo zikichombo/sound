@@ -12,6 +12,8 @@ import (
 // are passed through to reads from the Source.
 //
 // The returned source, sink are safe for use in multiple goroutines.
+//
+// Pipe is the dual of zikichombo.org/sound/ops.Copy.
 func Pipe(v Form) (Source, Sink) {
 	pC := make(chan *packet)
 	doneC := make(chan struct{})
