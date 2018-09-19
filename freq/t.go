@@ -117,10 +117,18 @@ func (f T) RadsPer(g T) float64 {
 	return g.RadsPerAt(f)
 }
 
+// SamplesPerCycle returns the number of samples, as a float, at sample rate f
+// which constitute one cycle of the frequency g.
 func (f T) SamplesPerCycle(g T) float64 {
 	return float64(f) / float64(g)
 }
 
+// FromSamplesPerCycle returns the frequency g which has
+//
+//  f.SamplesCyclesPerCycle(g) ~= spc
+//
+// where "~=" accounts for floating point rounding to the
+// smallest frequency quantum (NanoHertz).
 func (f T) FromSamplesPerCycle(spc float64) T {
 	return T(int64(math.Floor(float64(f)/spc + 0.5)))
 }
