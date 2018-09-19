@@ -6,7 +6,7 @@ import (
 )
 
 // Mel is a unit of frequency in which a difference less than MelAudible
-// is generally imperceivable (melodically).
+// is generally imperceivable (melodically).  See https://en.wikipedia.org/wiki/Mel_scale
 type Mel int64
 
 // MelAudible is the smallest difference in frequency in Mels which
