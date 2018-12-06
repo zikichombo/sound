@@ -2,16 +2,37 @@ language: go
 
 go:
   - "1.10"
+  - "1.11"
   - "tip"
+
+env:
+  global:
+    # Coveralls.io token.
+    secure: G6HmpweRbjhfFL/CPfQCaZq+DFOJ7bT43lyLhuLVPS3BvEMCpTGcCM/gMfE12VJOq5o76QtgPKmmf96GtvOqmRqeG/IyKJTMnsnliNshSII26HnFLHWrVOWkrFucsmGcQ7gHPZ11JTIImCV4THcIgM1+0W12tQAjohQYGnNexVKvgvJ/E0EDrO7+hj92TnY+ffF/zptKUFRZ9ehnXTxlJdGaCazg+akHHM2tKVutfwSmx4HYYKHLjBs+X/SYEpuCGNsWTMBr60DwNURJI6ryve+fge9tVNY6MFOZWPxvc0sM0eQ5eaWoFOX7qvGRgiR6yZZN5WICjKplJ5W0vzcGBJzXwqM5n9KL2f3ZMD4Pdnzk1amfrzijvOcqPEoky0gvyWt3JnVI4XJkqKC1O7VOanuIbay93a1Jqhb+iPqWOAdy1QVaV9zHh2nfqHJpVIU/MK2pRHqCEARGoBVG+CLAQlYU5Y1zOxIXNAsqGCF52Tum16opOlGmE1p699QcMx6IUR1LydaE0kF77Nwfoneoa6ByDlR28aXpDQWyFdxQzKf78ND4a8YpczVrv4eo6PRHev0O53L4e2CdhIv5X+FujTBpsxa221Jz12jbjVkkSlRRxi5dXR+hpCR8M1W617nZ2bJJf0jkUcSWiQq165DXAjeg52LsR32dTtJZ4mTnSGQ=
 
 notifications:
   on_success: false
   on_failure: always
 
-install: go get -t zikichombo.org/sound/...
+before_install:
+  # Move git repo cloned by Travis-CI as then we get the correct branch
+  # automatically.
+  - mkdir -p ${GOPATH}/src/zikichombo.org/sound
+  - rsync -az ${TRAVIS_BUILD_DIR}/ ${GOPATH}/src/zikichombo.org/sound
+  - export TRAVIS_BUILD_DIR=${GOPATH}/src/zikichombo.org/sound
+  - cd ${GOPATH}/src/zikichombo.org/sound
 
-script: go test zikichombo.org/sound/...
+install:
+  - go get -t ./...
 
+before_script:
+  - go get -u golang.org/x/tools/cmd/cover
+  - go get -u golang.org/x/tools/cmd/goimports
+  - go get -u github.com/golang/lint/golint
+  - go get -u github.com/mattn/goveralls
+  - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+  - wget https://raw.githubusercontent.com/zikichombo/meta/master/ci_checks.sh
+  - chmod +x ci_checks.sh
 
-
-
+script:
+  - ./ci_checks.sh
