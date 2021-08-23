@@ -3,7 +3,7 @@
 
 package cil
 
-import "zikichombo.org/sound"
+import "github.com/zikichombo/sound"
 
 // Compact takes a channel de-interleaved slice d with nC channels
 // and compacts d in place so that it has nF frames placed channel

@@ -6,7 +6,7 @@ package ops
 import (
 	"time"
 
-	"zikichombo.org/sound"
+	"github.com/zikichombo/sound"
 )
 
 type after struct {

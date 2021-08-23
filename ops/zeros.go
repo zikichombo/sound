@@ -3,7 +3,7 @@
 
 package ops
 
-import "zikichombo.org/sound"
+import "github.com/zikichombo/sound"
 
 type zeros struct {
 	sound.Source

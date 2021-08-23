@@ -3,7 +3,7 @@
 
 package ops
 
-import "zikichombo.org/sound"
+import "github.com/zikichombo/sound"
 
 func Sample(src sound.Source) (float64, error) {
 	var b [1]float64

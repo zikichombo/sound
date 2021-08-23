@@ -3,7 +3,7 @@
 
 package ops
 
-import "zikichombo.org/sound"
+import "github.com/zikichombo/sound"
 
 // Hop shifts buf left by shift frames and reads up to shift frames into buf at
 // the end by means of src.Receive.

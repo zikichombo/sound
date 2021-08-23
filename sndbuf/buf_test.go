@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/freq"
-	"zikichombo.org/sound/sndbuf"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/freq"
+	"github.com/zikichombo/sound/sndbuf"
 )
 
 func TestBufBasic(t *testing.T) {

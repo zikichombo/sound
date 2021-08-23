@@ -7,7 +7,7 @@ import (
 	"io"
 	"time"
 
-	"zikichombo.org/sound"
+	"github.com/zikichombo/sound"
 )
 
 type limit struct {

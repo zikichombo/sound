@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"zikichombo.org/sound/freq"
+	"github.com/zikichombo/sound/freq"
 )
 
 func TestMelConvert(t *testing.T) {

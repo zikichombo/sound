@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"io"
 
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/cil"
-	"zikichombo.org/sound/freq"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/cil"
+	"github.com/zikichombo/sound/freq"
 )
 
 // Type Buf implements an in memory sound Seeker/Source/Sink

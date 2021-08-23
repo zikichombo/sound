@@ -3,5 +3,4 @@
 
 // Package cil provides channel (de-)interleaving support.
 //
-// Package cil is part of http://zikichombo.org
-package cil /* import "zikichombo.org/sound/cil" */
+package cil

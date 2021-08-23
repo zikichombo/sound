@@ -4,8 +4,8 @@
 package ops
 
 import (
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/sample"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/sample"
 )
 
 // SlurpCmplx is like Receive, but puts the result in

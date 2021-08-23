@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"zikichombo.org/sound"
+	"github.com/zikichombo/sound"
 )
 
 // Copy copies samples from src to dst until

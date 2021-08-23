@@ -6,5 +6,4 @@
 // Package freq supports various scale related representations, including
 // intervals and Mels.
 //
-// Package freq is part of http://zikichombo.org
-package freq /* import "zikichombo.org/sound/freq" */
+package freq

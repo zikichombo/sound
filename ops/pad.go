@@ -6,7 +6,7 @@ package ops
 import (
 	"io"
 
-	"zikichombo.org/sound"
+	"github.com/zikichombo/sound"
 )
 
 type pad struct {

@@ -3,5 +3,4 @@
 
 // Package sound provides a core library for working with audio.
 //
-// Package sound is part of http://zikichombo.org
-package sound /* import "zikichombo.org/sound" */
+package sound

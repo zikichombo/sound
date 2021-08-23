@@ -7,8 +7,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/freq"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/freq"
 )
 
 func TestSel(t *testing.T) {

@@ -7,7 +7,7 @@ import (
 	"math"
 	"testing"
 
-	"zikichombo.org/sound/freq"
+	"github.com/zikichombo/sound/freq"
 )
 
 const eps = 1e-10

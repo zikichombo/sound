@@ -4,7 +4,7 @@
 package sound
 
 import "fmt"
-import "zikichombo.org/sound/freq"
+import "github.com/zikichombo/sound/freq"
 
 type _form struct {
 	c int

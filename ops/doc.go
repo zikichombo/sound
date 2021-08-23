@@ -5,4 +5,4 @@
 // require multiplexing io.
 //
 // Package ops is part of http://zikichombo.org
-package ops /* import "zikichombo.org/sound/ops" */
+package ops

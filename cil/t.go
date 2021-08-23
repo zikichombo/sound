@@ -3,7 +3,7 @@
 
 package cil
 
-import "zikichombo.org/sound"
+import "github.com/zikichombo/sound"
 
 // Type T encapsulates state for a buffer of
 // a fixed number of frames and channels.

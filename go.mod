@@ -1,1 +1,3 @@
-module zikichombo.org/sound
+module github.com/zikichombo/sound
+
+go 1.17

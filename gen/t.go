@@ -8,10 +8,10 @@ import (
 	"math"
 	"math/rand"
 
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/freq"
-	"zikichombo.org/sound/ops"
-	"zikichombo.org/sound/sample"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/freq"
+	"github.com/zikichombo/sound/ops"
+	"github.com/zikichombo/sound/sample"
 )
 
 type T struct {

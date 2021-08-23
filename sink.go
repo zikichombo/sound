@@ -3,7 +3,7 @@
 
 package sound
 
-import "zikichombo.org/sound/freq"
+import "github.com/zikichombo/sound/freq"
 
 // Sink is an interface for a destination of samples.
 type Sink interface {

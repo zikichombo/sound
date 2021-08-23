@@ -4,4 +4,4 @@
 // Package gen provides audio generators.
 //
 // Package gen is part of http://zikichombo.org
-package gen /* import "zikichombo.org/sound/gen" */
+package gen

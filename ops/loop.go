@@ -6,8 +6,8 @@ package ops
 import (
 	"io"
 
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/cil"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/cil"
 )
 
 type loop struct {

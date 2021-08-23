@@ -6,8 +6,8 @@ package ops
 import (
 	"io"
 
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/freq"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/freq"
 )
 
 type concat struct {

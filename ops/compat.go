@@ -6,7 +6,7 @@ package ops
 import (
 	"fmt"
 
-	"zikichombo.org/sound"
+	"github.com/zikichombo/sound"
 )
 
 // Compat checks that srcs are compatible in

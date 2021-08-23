@@ -6,7 +6,7 @@ package ops
 import (
 	"errors"
 
-	"zikichombo.org/sound"
+	"github.com/zikichombo/sound"
 )
 
 func MixEven(srcs ...sound.Source) (sound.Source, error) {

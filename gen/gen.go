@@ -4,9 +4,9 @@
 package gen
 
 import (
-	"zikichombo.org/sound"
-	"zikichombo.org/sound/freq"
-	"zikichombo.org/sound/ops"
+	"github.com/zikichombo/sound"
+	"github.com/zikichombo/sound/freq"
+	"github.com/zikichombo/sound/ops"
 )
 
 var _t = Default()
